@@ -1,13 +1,28 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
-import { TextField, FormControl, InputLabel, MenuItem, Select, Input } from '@material-ui/core'
+import { TextField, FormControl, InputLabel, MenuItem, Select, Input, Button } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
 import Axios from 'axios'
+
+const useStyles = makeStyles(theme => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  button: {
+    margin: theme.spacing(1),
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+}));
 
 const App = () => {
   const [currency1, setCurrency1] = useState('')
   const [currency2, setCurrency2] = useState('')
   const [rate, setRate] = useState(0)
   const [howmuch, setHowmuch] = useState(0)
+  const classes = useStyles();
 
   const handleChange1 = event => {
     setCurrency1(event.target.value);
@@ -35,7 +50,7 @@ const App = () => {
   return(
     <div>
       <p>
-        <FormControl>
+        <FormControl className={classes.formControl}>
           <InputLabel id="currency1">From</InputLabel>
           <Select
             labelId="currency-label"
@@ -45,13 +60,43 @@ const App = () => {
           >
             <MenuItem value={"EUR"}>EUR</MenuItem>
             <MenuItem value={"USD"}>USD</MenuItem>
+            <MenuItem value={"GBP"}>GBP</MenuItem>
             <MenuItem value={"SEK"}>SEK</MenuItem>
-          </Select>
+            <MenuItem value={"JPY"}>JPY</MenuItem>
+            <MenuItem value={"BGN"}>BGN</MenuItem>
+            <MenuItem value={"CZK"}>CZK</MenuItem>
+            <MenuItem value={"DKK"}>DKK</MenuItem>
+            <MenuItem value={"HUF"}>HUF</MenuItem>
+            <MenuItem value={"PLN"}>PLN</MenuItem>
+            <MenuItem value={"RON"}>RON</MenuItem>
+            <MenuItem value={"CHF"}>CHF</MenuItem>
+            <MenuItem value={"ISK"}>ISK</MenuItem>
+            <MenuItem value={"NOK"}>NOK</MenuItem> 
+            <MenuItem value={"HRK"}>HRK</MenuItem>
+            <MenuItem value={"RUB"}>RUB</MenuItem>
+            <MenuItem value={"TRY"}>TRY</MenuItem>
+            <MenuItem value={"AUD"}>AUD</MenuItem>  
+            <MenuItem value={"BRL"}>BRL</MenuItem>
+            <MenuItem value={"CAD"}>CAD</MenuItem>       
+            <MenuItem value={"CNY"}>CNY</MenuItem>       
+            <MenuItem value={"HKD"}>HKD</MenuItem>       
+            <MenuItem value={"IDR"}>IDR</MenuItem>
+            <MenuItem value={"ILS"}>ILS</MenuItem>       
+            <MenuItem value={"INR"}>INR</MenuItem>  
+            <MenuItem value={"KRW"}>KRW</MenuItem> 
+            <MenuItem value={"MXN"}>MXN</MenuItem> 
+            <MenuItem value={"MYR"}>MYR</MenuItem> 
+            <MenuItem value={"NZD"}>NZD</MenuItem> 
+            <MenuItem value={"PHP"}>PHP</MenuItem>  
+            <MenuItem value={"SGD"}>SGD</MenuItem> 
+            <MenuItem value={"THB"}>THB</MenuItem> 
+            <MenuItem value={"ZAR"}>ZAR</MenuItem>     
+            </Select>
         </FormControl>
       </p>
 
       <p>
-        <FormControl>
+        <FormControl className={classes.formControl}>
           <InputLabel id="currency2">To what</InputLabel>
           <Select
             labelId="currency2-label"
@@ -59,9 +104,39 @@ const App = () => {
             value={currency2}
             onChange={handleChange2}
           >
-            <MenuItem value={"USD"}>USD</MenuItem>
             <MenuItem value={"EUR"}>EUR</MenuItem>
+            <MenuItem value={"USD"}>USD</MenuItem>
+            <MenuItem value={"GBP"}>GBP</MenuItem>
             <MenuItem value={"SEK"}>SEK</MenuItem>
+            <MenuItem value={"JPY"}>JPY</MenuItem>
+            <MenuItem value={"BGN"}>BGN</MenuItem>
+            <MenuItem value={"CZK"}>CZK</MenuItem>
+            <MenuItem value={"DKK"}>DKK</MenuItem>
+            <MenuItem value={"HUF"}>HUF</MenuItem>
+            <MenuItem value={"PLN"}>PLN</MenuItem>
+            <MenuItem value={"RON"}>RON</MenuItem>
+            <MenuItem value={"CHF"}>CHF</MenuItem>
+            <MenuItem value={"ISK"}>ISK</MenuItem>
+            <MenuItem value={"NOK"}>NOK</MenuItem> 
+            <MenuItem value={"HRK"}>HRK</MenuItem>
+            <MenuItem value={"RUB"}>RUB</MenuItem>
+            <MenuItem value={"TRY"}>TRY</MenuItem>
+            <MenuItem value={"AUD"}>AUD</MenuItem>  
+            <MenuItem value={"BRL"}>BRL</MenuItem>
+            <MenuItem value={"CAD"}>CAD</MenuItem>       
+            <MenuItem value={"CNY"}>CNY</MenuItem>       
+            <MenuItem value={"HKD"}>HKD</MenuItem>       
+            <MenuItem value={"IDR"}>IDR</MenuItem>
+            <MenuItem value={"ILS"}>ILS</MenuItem>       
+            <MenuItem value={"INR"}>INR</MenuItem>  
+            <MenuItem value={"KRW"}>KRW</MenuItem> 
+            <MenuItem value={"MXN"}>MXN</MenuItem> 
+            <MenuItem value={"MYR"}>MYR</MenuItem> 
+            <MenuItem value={"NZD"}>NZD</MenuItem> 
+            <MenuItem value={"PHP"}>PHP</MenuItem>  
+            <MenuItem value={"SGD"}>SGD</MenuItem> 
+            <MenuItem value={"THB"}>THB</MenuItem> 
+            <MenuItem value={"ZAR"}>ZAR</MenuItem>   
           </Select>
         </FormControl>
       </p>
@@ -72,7 +147,7 @@ const App = () => {
         />
       </p>
       <p>
-        <button onClick={getData}>-></button>
+        <Button onClick={getData} variant="contained" className={classes.button}>( ͡° ͜ʖ ͡°)</Button>
       </p>
       <p>{rate}</p>
     </div>
