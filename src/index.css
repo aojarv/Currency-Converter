@@ -1,0 +1,18 @@
+header{
+  background-color: red;
+}
+body{
+  background-color: yellow;
+  font-size: 30;
+  font-family: 'Orbitron', sans-serif;
+}
+.container{
+  display: flex;
+}
+.cont1{
+  width: 50%;
+}
+.cont2{
+  justify-content: center;
+  padding: 200px;
+}
