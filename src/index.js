@@ -1,9 +1,15 @@
+  
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import { TextField, FormControl, InputLabel, MenuItem, Select, Input, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import Axios from 'axios'
+import './index.css'
+import logo from './logo.png'
 
+/** Määritellään select-boxien ja submit-buttonin tyyliä
+ * 
+ */
 const useStyles = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(1),
@@ -17,6 +23,10 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+
+/** Määritellään useStatea käyttäen muuttujat valuutoille sekä kurssille ja muunnettavalle summalle. Asetetaan muuttujiin currency1 ja currency2 muunnettavat valuutat handleChange1- ja handleChange2-metodeissa. Metodissa getData haetaan APIn kautta haluttu data ja asetetaan rateksi kurssin ja muunnettavan summan tulo. Metodissa howMuch asetetaan muunnettavaksi summaksi textfieldissä annettu arvo. Lopussa renderöidään koko sovellus. 
+ * 
+ */
 const App = () => {
   const [currency1, setCurrency1] = useState('')
   const [currency2, setCurrency2] = useState('')
@@ -36,7 +46,7 @@ const App = () => {
     const URL = `https://api.exchangeratesapi.io/latest?base=${currency1}&symbols=${currency2}`
     
     Axios.get(URL).then(response => {
-      setRate(response.data.rates[currency2] * howmuch)
+      setRate((response.data.rates[currency2] * howmuch).toFixed(2))
     })
   }
 
@@ -49,6 +59,13 @@ const App = () => {
 
   return(
     <div>
+      <header>
+        <div>
+          <img src={logo} alt="logo"/>
+        </div>
+      </header>
+      <div className="container">
+      <div className="cont1">
       <p>
         <FormControl className={classes.formControl}>
           <InputLabel id="currency1">From</InputLabel>
@@ -149,7 +166,9 @@ const App = () => {
       <p>
         <Button onClick={getData} variant="contained" className={classes.button}>( ͡° ͜ʖ ͡°)</Button>
       </p>
-      <p>{rate}</p>
+      </div>
+      <div className="cont2">{rate}</div>
+      </div>
     </div>
   )
 }
